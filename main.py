@@ -181,7 +181,7 @@ def main():
 
     # Sidebar
     st.sidebar.title("Module")
-    mode = st.sidebar.selectbox("Select Mode", ["Project Purpose","Dataset Overview", "Visualization", "Outlier Handling","Build Feature's","Model Evalution","Results and Insights"])
+    mode = st.sidebar.selectbox("Select Mode", ["Project Purpose","Dataset Overview", "Visualization","Outlier","Outlier Handling","Build Feature's","Model Evalution","Results and Insights"])
 
     # Main content based on mode selection
     if mode=="Project Purpose":
