@@ -213,6 +213,33 @@ def main():
         # Load data for visualization
         df = pd.read_pickle(original_path)
         visualize_data(df)
+        
+    elif mode=="Outlier":
+        st.subheader("Outlier's Boxplot")
+        df=pd.read_pickle(original_path)
+        outlier_columns = ['acc_x', 'acc_y', 'acc_z', 'gyr_x', 'gyr_y', 'gyr_z']
+        st.write("Accelometer")
+        fig1, ax1 = plt.subplots(figsize=(20, 10))
+        df[outlier_columns[:3]].assign(label=df['label']).boxplot(by="label", ax=ax1)
+        plt.title("Box Plot of First Three Outlier Columns by Label")
+        plt.suptitle("")  # Suppress default title
+        plt.xlabel("Label")
+        plt.ylabel("Value")
+        plt.xticks(rotation=45)  # Rotate x-axis labels for better visibility
+
+        # Display box plots in Streamlit
+        st.pyplot(fig1)
+
+        # Create box plots for remaining outlier columns
+        st.write("Gyroscope")
+        fig2, ax2 = plt.subplots(figsize=(20, 10))
+        df[outlier_columns[3:]].assign(label=df['label']).boxplot(by="label", ax=ax2)
+        plt.title("Box Plot of Remaining Outlier Columns by Label")
+        plt.suptitle("")  # Suppress default title
+        plt.xlabel("Label")
+        plt.ylabel("Value")
+        plt.xticks(rotation=45)  # Rotate x-axis labels for better visibility
+        st.pyplot(fig2)
     elif mode == "Outlier Handling":
         # Load data
         df = pd.read_pickle(original_path)
